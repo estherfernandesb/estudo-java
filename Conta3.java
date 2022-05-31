@@ -1,9 +1,21 @@
 public class Conta3 {
-    
-    private double saldo;
+	private double saldo;
 	private int agencia;
 	private int numero;
 	private Cliente titular;
+	private static int total;
+	
+	public Conta3(int agencia, int numero) {
+		if(agencia <= 0) {
+			System.out.println("INVÁLIDO");
+		}
+		Conta3.total++;
+		System.out.println("Total de contas criadas: " + Conta3.total);
+		this.agencia = agencia;
+		this.numero= numero;
+		
+		System.out.println("NOVA CONTA: " + this.numero);
+	}
 	
 	public void deposito(double valor) {
 		this.saldo += valor;
@@ -35,12 +47,20 @@ public class Conta3 {
 		return this.numero;
 	}
 	public void setNumero(int numero) {
+		if(numero <= 0) {
+			System.out.println("INVÁLIDO");
+			return;
+		}
 		this.numero = numero;
 	}
 	public int getAgencia() {
 		return agencia;
 	}
 	public void setAgencia(int agencia) {
+		if(agencia <= 0) {
+			System.out.println("INVÁLIDO");
+			return;
+		}
 		this.agencia = agencia;
 	}
 	public void setTitular(Cliente titular) {
@@ -48,5 +68,8 @@ public class Conta3 {
 	}
 	public Cliente getTitular() {
 		return titular;
+	}
+	public static int getTotal() {
+		return Conta3.total;
 	}
 }
